@@ -1,6 +1,5 @@
 package vue;
 
-import diceGame.Randomizer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,17 +11,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("diceGame.fxml"));
-        primaryStage.setTitle("Dice Game");
+        Parent root = FXMLLoader.load(getClass().getResource("start.fxml"));
+        primaryStage.setTitle("Die Game");
         primaryStage.setScene(new Scene(root, 600, 450));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
-        while (true) {
-            System.out.println(Randomizer.randomize(1, 100));
-        }
-        //launch(args);
+        launch(args);
     }
 }
