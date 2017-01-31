@@ -1,4 +1,4 @@
-package vues;
+package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,11 +19,11 @@ public class Main extends Application {
         start = new Stage();
         diceGame = new Stage();
 
-        Parent root = FXMLLoader.load(getClass().getResource("start.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../vues/start.fxml"));
         start.setTitle("Entrez votre pseudo");
         start.setScene(new Scene(root, 600, 450));
 
-        Parent root2 = FXMLLoader.load(getClass().getResource("diceGame.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("../vues/diceGame.fxml"));
         diceGame.setTitle("Dice Game");
         diceGame.setScene(new Scene(root2, 600, 450));
 

@@ -10,6 +10,6 @@
       <TextField fx:id="pseudo" layoutX="226.0" layoutY="145.0" />
       <Label layoutX="260.0" layoutY="80.0" text="Votre pseudo ?" />
       <Button fx:id="boutonValider" onAction="#validerPseudo" layoutX="274.0" layoutY="212.0" mnemonicParsing="false" text="Valider" />
-      <Label layoutX="236.0" fx:id="verifPseudo" layoutY="283.0" prefHeight="17.0" prefWidth="129.0" text="Il faut entrer un pseudo" textFill="RED" />
+      <Label layoutX="236.0" fx:id="verifPseudo" layoutY="283.0" prefHeight="17.0" prefWidth="129.0" text="" textFill="RED" />
    </children>
 </Pane>

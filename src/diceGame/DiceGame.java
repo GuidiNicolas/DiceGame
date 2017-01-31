@@ -2,8 +2,6 @@ package diceGame;
 
 import javafx.fxml.FXML;
 
-import java.util.ArrayList;
-
 /**
  * Created by Nicochu on 24/01/2017.
  */
@@ -13,6 +11,31 @@ public class DiceGame {
 
     Die d1;
     Die d2;
+    int resultat;
+    int score;
+
+    public Die getD1() {
+        return d1;
+    }
+
+    public Die getD2() {
+        return d2;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getResultat() {
+        return resultat;
+    }
+
+    public DiceGame() {
+        d1 = new Die();
+        d2 = new Die();
+        resultat = 0;
+        score = 0;
+    }
 
     public static synchronized DiceGame getInstance()
     {
@@ -24,16 +47,16 @@ public class DiceGame {
     }
 
     @FXML
-    public ArrayList<Die> play()
+    public void play()
     {
-        ArrayList<Die> dice = new ArrayList<Die>();
-
         d1.roll();
         d2.roll();
 
-        dice.add(d1);
-        dice.add(d2);
+        resultat = d1.getFaceValue() + d2.getFaceValue();
 
-        return dice;
+        if (resultat == 7) {
+            score++;
+        }
+
     }
 }

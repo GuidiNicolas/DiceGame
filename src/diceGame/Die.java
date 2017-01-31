@@ -1,32 +1,31 @@
 package diceGame;
 
-import javafx.fxml.FXML;
-
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Random;
 
 /**
  * Created by Nicochu on 24/01/2017.
  */
-public class Die implements Observer {
+public class Die extends Observable {
 
-    @FXML
     private Integer faceValue;
 
-    @FXML
+    public Integer getFaceValue() {
+        return faceValue;
+    }
+
     public void roll()
     {
         Randomizer rand = Randomizer.getInstance();
-        rand.randomize(1,6);
+        faceValue = rand.randomize(1,6);
+
+        setChanged();
+        notifyObservers(this.faceValue);
     }
 
     public Die()
     {
-        faceValue=1;
-    }
-
-    public void update(Observable o, Object arg) {
-        faceValue = (Integer)arg;
+        Randomizer rand = Randomizer.getInstance();
+        faceValue = -1;
     }
 }
