@@ -10,6 +10,7 @@ public class PlayerView implements Observer {
     private String joueur;
     private String score;
     private String resultat;
+
     public PlayerView(String joueur, String score, String resultat)
     {
         this.joueur=joueur;

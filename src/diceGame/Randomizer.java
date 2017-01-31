@@ -1,14 +1,30 @@
 package diceGame;
 
+import java.util.Observable;
 import java.util.Random;
 
 /**
  * Created by Nicochu on 26/01/2017.
  */
-public class Randomizer {
+public class Randomizer extends Observable {
 
-    public static int randomize(int min, int max) {
+    private static Randomizer INSTANCE = null;
+    int randomVal;
+
+    public static synchronized Randomizer getInstance()
+    {
+        if(INSTANCE == null)
+        {
+            INSTANCE = new Randomizer();
+        }
+        return INSTANCE;
+    }
+
+    public void randomize(int min, int max) {
         Random rand = new Random();
-        return  rand.nextInt(max) + min;
+        randomVal = rand.nextInt(max) + min;
+
+        setChanged();
+        notifyObservers(this.randomVal);
     }
 }

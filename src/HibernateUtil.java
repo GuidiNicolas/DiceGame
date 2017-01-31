@@ -10,7 +10,7 @@ public class HibernateUtil {
 
     public static final SessionFactory sessionFactory1;
 
-    public static final SessionFactory sessionFactory2;
+    //public static final SessionFactory sessionFactory2;
 
     static {
         try {

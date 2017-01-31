@@ -3,9 +3,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" fx:controller="controlleurs.ControllerDiceGame" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="273.0" layoutY="119.0" mnemonicParsing="false" text="Jouer" />
+      <Button fx:id="boutonJouer" layoutX="273.0" layoutY="119.0" mnemonicParsing="false" text="Jouer" />
       <Label layoutX="261.0" layoutY="44.0" text="Score actuel :" />
       <Label layoutX="281.0" layoutY="79.0" text="Score" />
       <Label layoutX="269.0" layoutY="287.0" text="Résultat : " />

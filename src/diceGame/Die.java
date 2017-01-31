@@ -3,12 +3,13 @@ package diceGame;
 import javafx.fxml.FXML;
 
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 /**
  * Created by Nicochu on 24/01/2017.
  */
-public class Dice extends Observable {
+public class Die implements Observer {
 
     @FXML
     private Integer faceValue;
@@ -16,19 +17,16 @@ public class Dice extends Observable {
     @FXML
     public void roll()
     {
-        Random rand = new Random();
-        faceValue = rand.nextInt(6) + 1;
-        setChanged();
-        notifyObservers(this.faceValue);
+        Randomizer rand = Randomizer.getInstance();
+        rand.randomize(1,6);
     }
 
-    public Dice()
+    public Die()
     {
         faceValue=1;
     }
 
-    public int getfaceValue()
-    {
-        return faceValue;
+    public void update(Observable o, Object arg) {
+        faceValue = (Integer)arg;
     }
 }
