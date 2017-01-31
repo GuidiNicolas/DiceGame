@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import main.Main;
 
 import java.net.URL;
 import java.util.Observable;
@@ -18,19 +19,10 @@ public class ControllerDiceGame implements Initializable, Observer {
     int nbDie = 1;
 
     @FXML
-    public static Button boutonJouer;
+    public Button boutonJouer;
 
     @FXML
-    public Label score1;
-
-    @FXML
-    public Label score2;
-
-    @FXML
-    public Label score;
-
-    @FXML
-    public Label resultat;
+    public Label score, score1, score2, resultat, lancersRestants;
 
     public void play() {
         dg.play();
@@ -40,9 +32,11 @@ public class ControllerDiceGame implements Initializable, Observer {
 
         nbTour++;
 
-        if (nbTour == 10) {
+        if (nbTour > 10) {
             boutonJouer.setDisable(true);
         }
+
+        lancersRestants.setText(Integer.toString(11-nbTour));
     }
 
     public void update(Observable o, Object arg) {
@@ -56,8 +50,17 @@ public class ControllerDiceGame implements Initializable, Observer {
         }
     }
 
+    public void afficherRegles() {
+        Main.regles.showAndWait();
+    }
+
+    public void fermer() {
+        System.exit(0);
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
-        dg = new DiceGame();
+        dg = DiceGame.getInstance();
+        lancersRestants.setText(Integer.toString(11-nbTour));
         dg.getD1().addObserver(this);
         dg.getD2().addObserver(this);
     }

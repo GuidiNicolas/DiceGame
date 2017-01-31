@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlleurs.ControllerRegles">
+   <children>
+      <TextArea layoutX="23.0" layoutY="8.0" prefHeight="247.0" prefWidth="554.0" text="                                               Dice game est un jeu de lancer de dés !&#10;&#10;&#10;-Vous avez le droit à 10 lancers de deux dés&#10;&#10;-A chaque clic sur le bouton, les deux dés sont lancés et obtiennent un score entre 1 et 6&#10;&#10;-Si la somme des dés fait 7, vous gagnez un point&#10;&#10;-Si la somme des dés est différente de 7, vous ne gagnez rien&#10;&#10;&#10;&#10;A la fin des 10 lancers, le jeu enregistre votre score, arriverez-vous à obtenir le meilleur score ?" />
+      <Button  layoutX="273.0" layoutY="271.0" mnemonicParsing="false" text="Fermer" onAction="#fermer" />
+   </children>
+</Pane>

@@ -1,7 +1,5 @@
 package diceGame;
 
-import javafx.fxml.FXML;
-
 /**
  * Created by Nicochu on 24/01/2017.
  */
@@ -9,10 +7,8 @@ public class DiceGame {
 
     private static DiceGame INSTANCE = null;
 
-    Die d1;
-    Die d2;
-    int resultat;
-    int score;
+    Die d1, d2;
+    int resultat, score;
 
     public Die getD1() {
         return d1;
@@ -46,7 +42,6 @@ public class DiceGame {
         return INSTANCE;
     }
 
-    @FXML
     public void play()
     {
         d1.roll();
@@ -57,6 +52,5 @@ public class DiceGame {
         if (resultat == 7) {
             score++;
         }
-
     }
 }
