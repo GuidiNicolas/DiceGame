@@ -41,7 +41,7 @@ public class ControllerDiceGame implements Initializable, Observer {
             boutonJouer.setDisable(true);
             boutonFermer.setDisable(false);
 
-            System.out.println(Player.getInstance().getScore());
+            Player.getInstance().sauvegarderScore();
 
         }
 
