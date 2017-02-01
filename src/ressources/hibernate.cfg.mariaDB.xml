@@ -11,6 +11,6 @@
         <property name="hibernate.connection.password">root</property>
         <property name="show_sql">true</property>
         <!--property name="hbm2ddl.auto">create</property!-->
-        <mapping class="diceGame.TheVeryHighScore"/>
+        <mapping class="diceGame.Player"/>
     </session-factory>
 </hibernate-configuration>

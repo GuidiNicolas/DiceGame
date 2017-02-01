@@ -1,6 +1,4 @@
-import diceGame.Die;
 import diceGame.Player;
-import diceGame.TheVeryHighScore;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -33,10 +31,6 @@ public class GestionPersistance {
 
     // Fonctions de requêtes \\
 
-    public static List<TheVeryHighScore> listeAbonnesAvecLogin(String login) {
-        return HibernateUtil.currentSession().createQuery("from theveryighscore as tvh where tvh.score = '"+login+"'").getResultList();
-    }
-
     public static List<Player> listeAbonnes() {
         return HibernateUtil.currentSession().createQuery("from Abonne").getResultList();
     }
@@ -46,9 +40,5 @@ public class GestionPersistance {
     public static void ajouterPlayer(Player player)
     {
         sauvegarder(player);
-    }
-    public static void AjouterTheVeryHighScore(TheVeryHighScore tvhs)
-    {
-        sauvegarder(tvhs);
     }
 }

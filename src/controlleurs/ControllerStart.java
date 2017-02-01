@@ -1,5 +1,6 @@
 package controlleurs;
 
+import diceGame.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,14 +20,13 @@ public class ControllerStart implements Initializable{
     public Label verifPseudo;
 
     @FXML
-    public Button boutonValider;
-
-    @FXML
     public void validerPseudo() throws Exception {
         if (pseudo.getText().length() == 0) {
             verifPseudo.setText("Entrez un pseudo !");
         }
         else {
+            Player.getInstance().setName(pseudo.getText());
+
             Main.start.close();
             Main.diceGame.showAndWait();
         }

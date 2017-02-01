@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -15,7 +16,9 @@
       <Label fx:id="score2" layoutX="399.0" layoutY="192.0" text="0" textFill="#ff7f00" />
       <Label layoutX="201.0" layoutY="80.0" text="Lancers restant :" />
       <Label fx:id="lancersRestants" layoutX="312.0" layoutY="80.0" text="0" />
-      <Button onAction="#afficherRegles" layoutX="497.0" layoutY="31.0" mnemonicParsing="false" text="Règles" />
-      <Button fx:id="boutonFermer" onAction="#fermer" layoutX="265.0" layoutY="337.0" mnemonicParsing="false" text="Fermer" />
+      <Button layoutX="497.0" layoutY="31.0" mnemonicParsing="false" onAction="#afficherRegles" text="Règles" />
+      <Button fx:id="boutonFermer" layoutX="265.0" layoutY="337.0" mnemonicParsing="false" onAction="#fermer" text="Fermer" />
+      <ImageView fx:id="déDroit" fitHeight="150.0" fitWidth="200.0" layoutX="92.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="déGauche" fitHeight="150.0" fitWidth="200.0" layoutX="348.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

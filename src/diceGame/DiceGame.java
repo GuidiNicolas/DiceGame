@@ -1,9 +1,11 @@
 package diceGame;
 
+import java.util.Observable;
+
 /**
  * Created by Nicochu on 24/01/2017.
  */
-public class DiceGame {
+public class DiceGame extends Observable {
 
     private static DiceGame INSTANCE = null;
 
@@ -51,6 +53,9 @@ public class DiceGame {
 
         if (resultat == 7) {
             score++;
+
+            setChanged();
+            notifyObservers(this.score);
         }
     }
 }

@@ -16,8 +16,7 @@ public class Die extends Observable {
 
     public void roll()
     {
-        Randomizer rand = Randomizer.getInstance();
-        faceValue = rand.randomize(1,6);
+        faceValue = Randomizer.getInstance().randomize(1,6);
 
         setChanged();
         notifyObservers(this.faceValue);
@@ -25,7 +24,6 @@ public class Die extends Observable {
 
     public Die()
     {
-        Randomizer rand = Randomizer.getInstance();
         faceValue = -1;
     }
 }

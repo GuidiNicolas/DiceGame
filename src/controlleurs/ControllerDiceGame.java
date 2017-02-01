@@ -1,10 +1,13 @@
 package controlleurs;
 
 import diceGame.DiceGame;
+import diceGame.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.Main;
 
 import java.net.URL;
@@ -14,38 +17,48 @@ import java.util.ResourceBundle;
 
 public class ControllerDiceGame implements Initializable, Observer {
 
-    DiceGame dg;
     int nbTour = 1;
     int nbDie = 1;
 
     @FXML
-    public Button boutonJouer;
+    public Button boutonJouer, boutonFermer;
 
     @FXML
     public Label score, score1, score2, resultat, lancersRestants;
 
-    public void play() {
-        dg.play();
+    @FXML
+    public ImageView déDroit, déGauche;
 
-        score.setText(Integer.toString(dg.getScore()));
-        resultat.setText(Integer.toString(dg.getResultat()));
+    public void play() {
+        DiceGame.getInstance().play();
+
+        score.setText(Integer.toString(DiceGame.getInstance().getScore()));
+        resultat.setText(Integer.toString(DiceGame.getInstance().getResultat()));
 
         nbTour++;
 
         if (nbTour > 10) {
             boutonJouer.setDisable(true);
+            boutonFermer.setDisable(false);
+
+            System.out.println(Player.getInstance().getScore());
+
         }
 
         lancersRestants.setText(Integer.toString(11-nbTour));
     }
 
     public void update(Observable o, Object arg) {
+
+        Integer nb = (Integer)arg;
+        Image die = new Image("images/"+nb+".JPG");
+
         if (nbDie == 1) {
-            score1.setText(Integer.toString((Integer)arg));
+            déDroit.setImage(die);
             nbDie = 2;
         }
         else {
-            score2.setText(Integer.toString((Integer)arg));
+            déGauche.setImage(die);
             nbDie = 1;
         }
     }
@@ -59,9 +72,9 @@ public class ControllerDiceGame implements Initializable, Observer {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        dg = DiceGame.getInstance();
+        boutonFermer.setDisable(true);
         lancersRestants.setText(Integer.toString(11-nbTour));
-        dg.getD1().addObserver(this);
-        dg.getD2().addObserver(this);
+        DiceGame.getInstance().getD1().addObserver(this);
+        DiceGame.getInstance().getD2().addObserver(this);
     }
 }
