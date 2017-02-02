@@ -2,12 +2,20 @@ package controlleurs;
 
 import diceGame.DiceGame;
 import diceGame.Player;
+import diceGame.Randomizer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import main.Main;
 
 import java.net.URL;
@@ -19,47 +27,91 @@ public class ControllerDiceGame implements Initializable, Observer {
 
     int nbTour = 1;
     int nbDie = 1;
+    int timer = 1;
+
+    public Image[] images = new Image[6];
 
     @FXML
-    public Button boutonJouer, boutonFermer;
+    public Button boutonJouer, boutonFermer, boutonRejouer;
 
     @FXML
-    public Label score, score1, score2, resultat, lancersRestants;
+    public Label score, resultat, lancersRestants;
 
     @FXML
     public ImageView déDroit, déGauche;
 
     public void play() {
-        DiceGame.getInstance().play();
+
+        boutonJouer.setDisable(true);
+
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent event) {
+                if (timer == 15) {
+                    DiceGame.getInstance().play();
+
+                    score.setText(Integer.toString(DiceGame.getInstance().getScore()));
+                    resultat.setText(Integer.toString(DiceGame.getInstance().getResultat()));
+
+                    nbTour++;
+                    lancersRestants.setText(Integer.toString(11-nbTour));
+
+                    boutonJouer.setDisable(false);
+
+                    if (nbTour > 10) {
+                        boutonJouer.setDisable(true);
+                        boutonFermer.setDisable(false);
+                        boutonRejouer.setDisable(false);
+
+                        Player.getInstance().sauvegarderScore();
+                    }
+
+                    timer = 0;
+                }
+                else {
+                    DiceGame.getInstance().playGraphique();
+                }
+                timer++;
+            }
+        }));
+        fiveSecondsWonder.setCycleCount(15);
+        fiveSecondsWonder.play();
+    }
+
+    public void rejouer() {
+        DiceGame.getInstance().reset();
+
+        nbTour = 1;
+        nbDie = 1;
+        timer = 1;
 
         score.setText(Integer.toString(DiceGame.getInstance().getScore()));
         resultat.setText(Integer.toString(DiceGame.getInstance().getResultat()));
+        lancersRestants.setText("10");
+        resultat.setText("");
 
-        nbTour++;
+        boutonJouer.setDisable(false);
+        boutonFermer.setDisable(true);
+        boutonRejouer.setDisable(true);
 
-        if (nbTour > 10) {
-            boutonJouer.setDisable(true);
-            boutonFermer.setDisable(false);
-
-            Player.getInstance().sauvegarderScore();
-
-        }
-
-        lancersRestants.setText(Integer.toString(11-nbTour));
     }
 
     public void update(Observable o, Object arg) {
-
         Integer nb = (Integer)arg;
-        Image die = new Image("images/"+nb+".JPG");
 
         if (nbDie == 1) {
-            déDroit.setImage(die);
+            déGauche.setImage(images[nb-1]);
             nbDie = 2;
         }
         else {
-            déGauche.setImage(die);
+            déDroit.setImage(images[nb-1]);
             nbDie = 1;
+        }
+    }
+
+    public void chargerImages() {
+        for (int i=0 ; i<6 ; i++) {
+            images[i] = new Image("images/"+(i+1)+".JPG");
         }
     }
 
@@ -73,7 +125,10 @@ public class ControllerDiceGame implements Initializable, Observer {
 
     public void initialize(URL location, ResourceBundle resources) {
         boutonFermer.setDisable(true);
+        boutonRejouer.setDisable(true);
+        boutonJouer.setDefaultButton(true);
         lancersRestants.setText(Integer.toString(11-nbTour));
+        chargerImages();
         DiceGame.getInstance().getD1().addObserver(this);
         DiceGame.getInstance().getD2().addObserver(this);
     }

@@ -3,7 +3,6 @@ package controlleurs;
 import diceGame.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.Main;
@@ -25,7 +24,7 @@ public class ControllerStart implements Initializable{
             verifPseudo.setText("Entrez un pseudo !");
         }
         else {
-            Player.getInstance().setName(pseudo.getText());
+            Player.getInstance().setNom(pseudo.getText());
 
             Main.start.close();
             Main.diceGame.showAndWait();

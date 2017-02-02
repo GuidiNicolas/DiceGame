@@ -44,6 +44,11 @@ public class DiceGame extends Observable {
         return INSTANCE;
     }
 
+    public void reset() {
+        resultat = 0;
+        score = 0;
+    }
+
     public void play()
     {
         d1.roll();
@@ -52,10 +57,15 @@ public class DiceGame extends Observable {
         resultat = d1.getFaceValue() + d2.getFaceValue();
 
         if (resultat == 7) {
-            score++;
+            score = score +10;
 
             setChanged();
             notifyObservers(this.score);
         }
+    }
+
+    public void playGraphique() {
+        d1.roll();
+        d2.roll();
     }
 }

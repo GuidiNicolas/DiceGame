@@ -1,3 +1,5 @@
+package persistance;
+
 import diceGame.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,7 +34,7 @@ public class GestionPersistance {
     // Fonctions de requêtes \\
 
     public static List<Player> listeAbonnes() {
-        return HibernateUtil.currentSession().createQuery("from Abonne").getResultList();
+        return HibernateUtil.currentSession().createQuery("from Player").getResultList();
     }
 
     // Fonctions d'ajouts \\

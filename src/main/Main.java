@@ -14,6 +14,7 @@ public class Main extends Application {
     public static Stage start;
     public static Stage diceGame;
     public static Stage regles;
+    public static Stage highScores;
 
 
     @Override
@@ -22,6 +23,7 @@ public class Main extends Application {
         start = new Stage();
         diceGame = new Stage();
         regles = new Stage();
+        highScores = new Stage();
 
         Parent root = FXMLLoader.load(getClass().getResource("../vues/start.fxml"));
         start.setResizable(false);
@@ -45,6 +47,10 @@ public class Main extends Application {
         regles.setTitle("Règles");
         regles.setScene(new Scene(root3, 600, 450));
 
+        Parent root4 = FXMLLoader.load(getClass().getResource("../vues/highScores.fxml"));
+        highScores.setResizable(false);
+        highScores.setTitle("Règles");
+        highScores.setScene(new Scene(root4, 600, 450));
 
         start.setResizable(false);
 
