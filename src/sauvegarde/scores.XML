@@ -1,18 +1,26 @@
 <resultats>
 	<resultat>
 		<nom>
-			test
+			yoloswag
 		</nom>
 		<score>
-			30
+			20
 		</score>
 	</resultat>
 	<resultat>
 		<nom>
-			test
+			yoloswag
 		</nom>
 		<score>
-			30
+			20
+		</score>
+	</resultat>
+	<resultat>
+		<nom>
+			yoloswag
+		</nom>
+		<score>
+			20
 		</score>
 	</resultat>
 </resultats>

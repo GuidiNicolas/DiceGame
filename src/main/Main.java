@@ -46,11 +46,23 @@ public class Main extends Application {
         regles.setResizable(false);
         regles.setTitle("Règles");
         regles.setScene(new Scene(root3, 600, 450));
+        regles.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                regles.close();
+                diceGame.show();
+            }
+        });
 
         Parent root4 = FXMLLoader.load(getClass().getResource("../vues/highScores.fxml"));
         highScores.setResizable(false);
         highScores.setTitle("Règles");
         highScores.setScene(new Scene(root4, 600, 450));
+        highScores.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                highScores.close();
+                diceGame.show();
+            }
+        });
 
         start.setResizable(false);
 

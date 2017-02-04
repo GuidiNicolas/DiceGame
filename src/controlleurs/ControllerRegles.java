@@ -8,7 +8,12 @@ import main.Main;
  */
 public class ControllerRegles {
 
+
+
     public void fermer() {
         Main.regles.close();
+        Main.diceGame.show();
     }
+
+
 }

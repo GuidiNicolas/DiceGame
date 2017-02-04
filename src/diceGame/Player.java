@@ -42,6 +42,10 @@ public class Player implements Observer {
         return score;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public static synchronized Player getInstance()
     {
         if(INSTANCE == null)
@@ -52,7 +56,7 @@ public class Player implements Observer {
     }
 
     public void sauvegarderScore() {
-        int choix = 2; //Randomizer.getInstance().randomize(1,3);
+        int choix = 1; //Randomizer.getInstance().randomize(1,3);
 
         switch (choix) {
             case 1 : sauvegarderXML();
@@ -67,7 +71,7 @@ public class Player implements Observer {
         StringWriter out = new StringWriter();
         String fichierXML = "";
         try {
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(new File("src/sauvegarde.scoresXML/scores.XML")));
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(new File("src/sauvegarde/scores.XML")));
             int b;
             while ((b=in.read()) != -1)
                 out.write(b);
@@ -79,7 +83,17 @@ public class Player implements Observer {
         }
         catch (IOException ie)
         {
-            ie.printStackTrace();
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(new File("src/sauvegarde/scores.XML")));
+                // normalement si le fichier n'existe pas, il est crée à la racine du projet
+                writer.write("");
+
+                writer.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
 
         if ( !(fichierXML.startsWith("<resultats>")&&(fichierXML.endsWith("</resultats>"))) ) {
@@ -91,7 +105,7 @@ public class Player implements Observer {
          fichierXML = fichierXML.substring(0,fichierXML.length()-12) + sauvegarde + "</resultats>";
 
         try {
-            FileWriter MyFile= new FileWriter("src/sauvegarde.scoresXML/scores.XML",false);
+            FileWriter MyFile= new FileWriter("src/sauvegarde/scores.XML",false);
             MyFile.write(fichierXML);
             MyFile.close();
         } catch (IOException e) {

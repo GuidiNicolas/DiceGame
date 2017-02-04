@@ -20,6 +20,10 @@ public class GestionPersistance {
         session.clear();
     }
 
+    public static void clear() {
+        HibernateUtil.currentSession().clear();
+    }
+
     public static void supprimer(Object o) {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
@@ -33,7 +37,7 @@ public class GestionPersistance {
 
     // Fonctions de requêtes \\
 
-    public static List<Player> listeAbonnes() {
+    public static List<Player> listePlayers() {
         return HibernateUtil.currentSession().createQuery("from Player").getResultList();
     }
 

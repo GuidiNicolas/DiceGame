@@ -19,5 +19,6 @@
       <ImageView fx:id="déDroit" fitHeight="150.0" fitWidth="200.0" layoutX="92.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="déGauche" fitHeight="150.0" fitWidth="200.0" layoutX="348.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="boutonRejouer" layoutX="348.0" layoutY="338.0" mnemonicParsing="false" onAction="#rejouer" text="Rejouer" />
+      <Button layoutX="466.0" layoutY="85.0" mnemonicParsing="false" onAction="#afficherScores" text="Scores enregistrés" />
    </children>
 </Pane>

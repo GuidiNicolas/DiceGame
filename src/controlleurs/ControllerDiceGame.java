@@ -64,8 +64,8 @@ public class ControllerDiceGame implements Initializable, Observer {
                         boutonRejouer.setDisable(false);
 
                         Player.getInstance().sauvegarderScore();
-                    }
 
+                    }
                     timer = 0;
                 }
                 else {
@@ -94,6 +94,9 @@ public class ControllerDiceGame implements Initializable, Observer {
         boutonFermer.setDisable(true);
         boutonRejouer.setDisable(true);
 
+        déGauche.setImage(null);
+        déDroit.setImage(null);
+
     }
 
     public void update(Observable o, Object arg) {
@@ -116,7 +119,13 @@ public class ControllerDiceGame implements Initializable, Observer {
     }
 
     public void afficherRegles() {
+        Main.diceGame.close();
         Main.regles.showAndWait();
+    }
+
+    public void afficherScores() {
+        Main.diceGame.close();
+        Main.highScores.showAndWait();
     }
 
     public void fermer() {

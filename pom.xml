@@ -4,7 +4,7 @@
   <groupId>agogue.guidi</groupId>
   <artifactId>DiceGame</artifactId>
   <version>0.1</version>
-  <nom>DiceGame</nom>
+  <name>DiceGame</name>
   <url>http://maven.apache.org</url>
   <dependencies>
 
