@@ -1,7 +1,5 @@
 package sauvegarde;
 
-import diceGame.Randomizer;
-
 /**
  * Created by Nicochu on 06/02/2017.
  */
@@ -22,10 +20,10 @@ public class SauvegardeFactory {
         Sauvegarde sauvegarde = null;
         switch (typeSauvegarde) {
             case 1:
-                sauvegarde = new SauvegardeMariaDB();
+                sauvegarde = new SauvegardeXML();
                 break;
             case 2:
-                sauvegarde = new SauvegardeXML();
+                sauvegarde = new SauvegardeMariaDB();
                 break;
             case 3:
                 sauvegarde = new SauvegardeMongoDB();

@@ -20,10 +20,10 @@ public class ChargementFactory {
         Chargement chargement = null;
         switch (typeSauvegarde) {
             case 1:
-                chargement = new ChargementMariaDB();
+                chargement = new ChargementXML();
                 break;
             case 2:
-                chargement = new ChargementXML();
+                chargement = new ChargementMariaDB();
                 break;
             case 3:
                 chargement = new ChargementMongoDB();

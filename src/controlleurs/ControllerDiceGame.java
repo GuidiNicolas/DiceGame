@@ -1,12 +1,8 @@
 package controlleurs;
 
 import diceGame.DiceGame;
-import diceGame.Player;
-import diceGame.Randomizer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -70,8 +66,17 @@ public class ControllerDiceGame implements Initializable, Observer {
                         boutonFermer.setDisable(false);
                         boutonRejouer.setDisable(false);
 
-                        Sauvegarde sauvegarde = SauvegardeFactory.getInstance().creerSauvegarde(Randomizer.getInstance().randomize(1,3));
-                        sauvegarde.sauvegarder();
+                        for (int i=1 ; i<=3 ; i++) {
+                            try {
+                                Sauvegarde sauvegarde = SauvegardeFactory.getInstance().creerSauvegarde(i);
+                                sauvegarde.sauvegarder();
+                            }
+                            catch (Exception e) {
+                                System.err.println("Erreur lors de la sauvegarde des données, fermeture de l'application");
+                                System.exit(0);
+                            }
+
+                        }
 
                         try {
                             Main.highScores.setScene(new Scene((Parent)FXMLLoader.load(getClass().getResource("../vues/highScores.fxml")),600, 450));

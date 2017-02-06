@@ -1,11 +1,6 @@
 package diceGame;
 
-import persistance.GestionPersistance;
-import sauvegarde.Sauvegarde;
-import sauvegarde.SauvegardeFactory;
-
 import javax.persistence.*;
-import java.io.*;
 import java.util.Observable;
 import java.util.Observer;
 

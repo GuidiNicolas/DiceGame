@@ -2,20 +2,13 @@ package controlleurs;
 
 import chargement.Chargement;
 import chargement.ChargementFactory;
-import diceGame.Player;
 import diceGame.Randomizer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import main.Main;
-import persistance.GestionPersistance;
-import sauvegarde.Sauvegarde;
-import sauvegarde.SauvegardeFactory;
 
-import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -28,7 +21,13 @@ public class ControllerHighScores implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         scores.setText("");
-        chargerDonnees();
+        try {
+            chargerDonnees();
+        }
+        catch (Exception e) {
+            System.err.println("Erreur lors du chargement des données, fermeture de l'application");
+            System.exit(0);
+        }
     }
 
     public void fermer() {
