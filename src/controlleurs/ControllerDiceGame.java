@@ -32,6 +32,7 @@ import java.util.ResourceBundle;
 public class ControllerDiceGame implements Initializable, Observer {
 
     int nbTour = 1;
+    final int nbTourFinal = 10;
     int nbDie = 1;
     int timer = 1;
 
@@ -60,11 +61,11 @@ public class ControllerDiceGame implements Initializable, Observer {
                     resultat.setText(Integer.toString(DiceGame.getInstance().getResultat()));
 
                     nbTour++;
-                    lancersRestants.setText(Integer.toString(11-nbTour));
+                    lancersRestants.setText(Integer.toString(nbTourFinal+1-nbTour));
 
                     boutonJouer.setDisable(false);
 
-                    if (nbTour > 10) {
+                    if (nbTour > nbTourFinal) {
                         boutonJouer.setDisable(true);
                         boutonFermer.setDisable(false);
                         boutonRejouer.setDisable(false);
@@ -148,7 +149,7 @@ public class ControllerDiceGame implements Initializable, Observer {
         boutonFermer.setDisable(true);
         boutonRejouer.setDisable(true);
         boutonJouer.setDefaultButton(true);
-        lancersRestants.setText(Integer.toString(11-nbTour));
+        lancersRestants.setText(Integer.toString(nbTourFinal+1-nbTour));
         chargerImages();
         DiceGame.getInstance().getD1().addObserver(this);
         DiceGame.getInstance().getD2().addObserver(this);
