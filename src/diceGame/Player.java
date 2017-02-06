@@ -1,10 +1,10 @@
 package diceGame;
 
 import persistance.GestionPersistance;
+import sauvegarde.Sauvegarde;
+import sauvegarde.SauvegardeFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.*;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,7 +19,8 @@ public class Player implements Observer {
 
     private static Player INSTANCE = null;
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.TABLE)
+    private int id;
     private String nom;
     private int score;
 
@@ -53,68 +54,6 @@ public class Player implements Observer {
             INSTANCE = new Player();
         }
         return INSTANCE;
-    }
-
-    public void sauvegarderScore() {
-        int choix = 1; //Randomizer.getInstance().randomize(1,3);
-
-        switch (choix) {
-            case 1 : sauvegarderXML();
-                break;
-            case 2 : sauvegarderMariaDB();
-        }
-
-    }
-
-    public void sauvegarderXML() {
-
-        StringWriter out = new StringWriter();
-        String fichierXML = "";
-        try {
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(new File("src/sauvegarde/scores.XML")));
-            int b;
-            while ((b=in.read()) != -1)
-                out.write(b);
-            out.flush();
-            out.close();
-            in.close();
-
-            fichierXML = out.toString();
-        }
-        catch (IOException ie)
-        {
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(new File("src/sauvegarde/scores.XML")));
-                // normalement si le fichier n'existe pas, il est crée à la racine du projet
-                writer.write("");
-
-                writer.close();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        if ( !(fichierXML.startsWith("<resultats>")&&(fichierXML.endsWith("</resultats>"))) ) {
-            fichierXML = "<resultats>\n</resultats>";
-        }
-
-        String sauvegarde = "\t<resultat>\n\t\t<nom>\n\t\t\t"+ getNom()+"\n\t\t</nom>\n\t\t<score>\n\t\t\t"+getScore()+"\n\t\t</score>\n\t</resultat>\n";
-
-         fichierXML = fichierXML.substring(0,fichierXML.length()-12) + sauvegarde + "</resultats>";
-
-        try {
-            FileWriter MyFile= new FileWriter("src/sauvegarde/scores.XML",false);
-            MyFile.write(fichierXML);
-            MyFile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void sauvegarderMariaDB() {
-        GestionPersistance.sauvegarder(this);
     }
 
     public void update(Observable o, Object arg) {

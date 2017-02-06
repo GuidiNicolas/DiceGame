@@ -20,6 +20,6 @@ public class Randomizer{
 
     public int randomize(int min, int max) {
         Random rand = new Random();
-        return (rand.nextInt(max) + min);
+        return (rand.nextInt(max - min + 1) + min);
     }
 }

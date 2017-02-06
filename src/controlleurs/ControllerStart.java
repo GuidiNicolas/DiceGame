@@ -10,7 +10,7 @@ import main.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControllerStart implements Initializable{
+public class ControllerStart{
 
     @FXML
     public TextField pseudo;
@@ -20,8 +20,8 @@ public class ControllerStart implements Initializable{
 
     @FXML
     public void validerPseudo() throws Exception {
-        if (pseudo.getText().length() == 0) {
-            verifPseudo.setText("Entrez un pseudo !");
+        if ( (pseudo.getText().length() == 0) || ((pseudo.getText().length() > 15))) {
+            verifPseudo.setText("Entrez un pseudo ! (Maximum 15 caractères)");
         }
         else {
             Player.getInstance().setNom(pseudo.getText());
@@ -29,10 +29,5 @@ public class ControllerStart implements Initializable{
             Main.start.close();
             Main.diceGame.showAndWait();
         }
-    }
-
-    // Méthode lancée quand la fenetre est créée
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

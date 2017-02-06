@@ -29,6 +29,11 @@ public class Main extends Application {
         start.setResizable(false);
         start.setTitle("Entrez votre pseudo");
         start.setScene(new Scene(root, 600, 450));
+        start.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.exit(0);
+            }
+        });
 
 
         Parent root2 = FXMLLoader.load(getClass().getResource("../vues/diceGame.fxml"));
