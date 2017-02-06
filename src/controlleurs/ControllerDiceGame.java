@@ -47,10 +47,10 @@ public class ControllerDiceGame implements Initializable, Observer {
 
         boutonJouer.setDisable(true);
 
-        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>() {
+        Timeline fiveSecondsWonder = new Timeline(new KeyFrame(Duration.millis(50), new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                if (timer == 15) {
+                if (timer == 30) {
                     DiceGame.getInstance().play();
 
                     score.setText(Integer.toString(DiceGame.getInstance().getScore()));
@@ -75,7 +75,6 @@ public class ControllerDiceGame implements Initializable, Observer {
                                 System.err.println("Erreur lors de la sauvegarde des données, fermeture de l'application");
                                 System.exit(0);
                             }
-
                         }
 
                         try {
@@ -92,7 +91,7 @@ public class ControllerDiceGame implements Initializable, Observer {
                 timer++;
             }
         }));
-        fiveSecondsWonder.setCycleCount(15);
+        fiveSecondsWonder.setCycleCount(30);
         fiveSecondsWonder.play();
     }
 
