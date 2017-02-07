@@ -41,7 +41,7 @@ public class ControllerDiceGame implements Initializable, Observer {
     public Label score, resultat, lancersRestants;
 
     @FXML
-    public ImageView déDroit, déGauche;
+    public ImageView RightDie, LeftDie;
 
     public void play() {
 
@@ -111,8 +111,8 @@ public class ControllerDiceGame implements Initializable, Observer {
         boutonFermer.setDisable(true);
         boutonRejouer.setDisable(true);
 
-        déGauche.setImage(null);
-        déDroit.setImage(null);
+        LeftDie.setImage(null);
+        RightDie.setImage(null);
 
     }
 
@@ -120,11 +120,11 @@ public class ControllerDiceGame implements Initializable, Observer {
         Integer nb = (Integer)arg;
 
         if (nbDie == 1) {
-            déGauche.setImage(images[nb-1]);
+            LeftDie.setImage(images[nb-1]);
             nbDie = 2;
         }
         else {
-            déDroit.setImage(images[nb-1]);
+            RightDie.setImage(images[nb-1]);
             nbDie = 1;
         }
     }
